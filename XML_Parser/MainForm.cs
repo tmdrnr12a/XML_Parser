@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XML_Parser.Managers;
 using XML_Parser.Models;
@@ -47,6 +42,9 @@ namespace XML_Parser
 
         #region " Methods "
 
+        /// <summary>
+        /// Initialize DataGridView
+        /// </summary>
         private void InitDataGridView()
         {
             uiDGV_Main.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -103,6 +101,7 @@ namespace XML_Parser
             }));
 
 #if DEBUG
+            // Test File
             uiTxt_FileName.Text = $@"{Application.StartupPath}\References\Sample.xml";
 #endif
         }
@@ -133,6 +132,7 @@ namespace XML_Parser
 
             try
             {
+                // XML File -> DataSet
                 xmlDs.ReadXml(fileName);
             }
             catch (Exception ex)
@@ -143,17 +143,14 @@ namespace XML_Parser
 
             if (xmlDs != null && xmlDs.Tables.Count > 0 && xmlDs.Tables[0].Rows.Count > 0)
             {
-                // ParserProcessor 내 함수를 이용해서 Model 객체에 ds 정보를 세팅하고
+                // Parse data
                 StudentList stdList = new StudentList(xmlDs);
 
-                // DatabaseProcessor 내 함수를 이용해서 DB 에 입력
-                //DatabaseProcessor.Instance.InsertData(stdList);
+                // Insert data
+                DatabaseProcessor.Instance.InsertData(stdList);
 
-                // DB 에 입력된 내용 조회해서 Datasource 로 보여주기
+                // Select data
                 uiDGV_Main.DataSource = DatabaseProcessor.Instance.GetData();
-
-                //uiDGV_Main.AutoResizeColumns();
-                //uiDGV_Main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
         }
 

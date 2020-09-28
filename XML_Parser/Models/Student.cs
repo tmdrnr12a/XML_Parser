@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XML_Parser.Processors;
 
 namespace XML_Parser.Models
 {
     class Student
     {
+        #region " Variables "
+
         public string STD_ID = string.Empty;
         public string STD_NO = string.Empty;
         public string STD_NAME = string.Empty;
@@ -19,6 +17,10 @@ namespace XML_Parser.Models
 
         public List<Hobby> HOBBY_LIST = new List<Hobby>();
 
+        #endregion " Variables End"
+
+        #region " Create & Load & Shown "
+
         public Student(DataSet ds, int id)
         {
             DataTable stdDt = ds.Tables["STD_INFO"];
@@ -27,6 +29,10 @@ namespace XML_Parser.Models
             this.STD_ID = id.ToString();
             SetList(ds, this.STD_ID);
         }
+
+        #endregion " Create & Load & Shown End "
+
+        #region " Methods "
 
         private void SetList(DataSet ds, string stdId)
         {
@@ -46,5 +52,11 @@ namespace XML_Parser.Models
                 this.HOBBY_LIST.Add(hobby);
             }
         }
+
+        #endregion " Methods End "
+
+        #region " Events "
+
+        #endregion " Events End "
     }
 }

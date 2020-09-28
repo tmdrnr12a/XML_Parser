@@ -12,6 +12,7 @@ namespace XML_Parser
         [STAThread]
         static void Main()
         {
+            // Config
             string configFile = "Config.ini";
             FileManager.FileName = $"{Environment.CurrentDirectory}\\{configFile}";
 

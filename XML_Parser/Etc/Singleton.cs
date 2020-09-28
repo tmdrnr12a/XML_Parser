@@ -4,7 +4,7 @@ namespace XML_Parser.Etc
 {
     public class Singleton<T> where T : class, new()
     {
-        private static object _syncobj = new object();
+        private static readonly object _syncobj = new object();
         private static volatile T _instance = null;
         public static T Instance
         {

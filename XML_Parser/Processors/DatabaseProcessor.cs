@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XML_Parser.Etc;
 using XML_Parser.Managers;
@@ -29,6 +26,10 @@ namespace XML_Parser.Processors
             InsertHobbyData(stdList);
         }
 
+        /// <summary>
+        /// Insert student's data
+        /// </summary>
+        /// <param name="stdList"></param>
         private void InsertStudentData(StudentList stdList)
         {
             string headerQuery =
@@ -52,7 +53,7 @@ VALUES
                 query.AppendFormat("'{0}' ", stdList.STD_LIST[i].STD_MAJOR);
                 query.AppendFormat(")");
 
-                // 100개 단위로 입력
+                // Batch process (100)
                 if ((i % 100 == 99) || (i == stdList.STD_LIST.Count - 1))
                 {
                     query = query.Replace("*", "");
@@ -75,7 +76,11 @@ VALUES
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Insert hobby's data
+        /// </summary>
+        /// <param name="stdList"></param>
         private void InsertHobbyData(StudentList stdList)
         {
             string headerQuery =
@@ -106,7 +111,7 @@ VALUES
                     query.AppendFormat("'{0}' ", hobbyName);
                     query.AppendFormat(")");
 
-                    // 100개 단위로 입력
+                    // Batch process (100)
                     if ((k % 100 == 99) || (k == stdList.STD_LIST[i].HOBBY_LIST.Count - 1))
                     {
                         query = query.Replace("*", "");

@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XML_Parser.Processors;
 
 namespace XML_Parser.Models
 {
     class StudentList
     {
+        #region " Variables "
+
         public List<Student> STD_LIST = new List<Student>();
 
+        #endregion " Variables End"
+
+        #region " Create & Load & Shown "
         public StudentList(DataSet ds)
         {
             SetList(ds);
         }
+
+        #endregion " Create & Load & Shown End "
+
+        #region " Methods "
 
         private void SetList(DataSet ds)
         {
@@ -25,5 +29,11 @@ namespace XML_Parser.Models
                 this.STD_LIST.Add(std);
             }
         }
+
+        #endregion " Methods End "
+
+        #region " Events "
+
+        #endregion " Events End "
     }
 }
